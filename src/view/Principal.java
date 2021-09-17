@@ -16,14 +16,19 @@ public class Principal {
 		    		+ "1 - inserir endereco\n "
 		    		+ "2 - remover endereco\n "
 		    		+ "3 - exibir o ultimo endereco\n "
-		    		+ "4 - sair"));
+		    		+ "9 - sair"));
 			switch(op) {
 				case 1:
 					String caminho = "";
 					String endereco = JOptionPane.showInputDialog("Digite um endereco: ");
 					if(endereco.substring(0,7).equals("http://")) {
-						caminho = endereco;
-						hc.inserirEndereco(p, endereco);
+						if(endereco.substring(endereco.length()-4).equals(".com")) {
+							caminho = endereco;
+							hc.inserirEndereco(p, endereco);
+						}else {
+							throw new Exception("É necessário que o dominio termine com .com");
+						}
+						
 					}else {
 						throw new Exception("É necessário que o endereço inicie com http://");
 					}
